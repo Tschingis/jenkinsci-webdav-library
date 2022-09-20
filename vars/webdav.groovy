@@ -17,7 +17,7 @@ def call(Map opts = [:]) {
     if (env['WORKSPACE'] == null) {
         error "webdav: no workspace in current context"
     }
-    if (env['NODE_NAME'].equals("master")) {
+    if (env['NODE_NAME'].equals("master") || env['NODE_NAME'].equals("built-in")) {
         workspace = new FilePath(null, env['WORKSPACE'])
     } else {
         workspace = new FilePath(Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel(), env['WORKSPACE'])
